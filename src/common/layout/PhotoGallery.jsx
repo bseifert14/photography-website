@@ -1,43 +1,42 @@
 import React from 'react';
-import { createUseStyles } from "react-jss";
-import PropTypes from 'prop-types';
-import Photo from "../component/Photo";
-
+import { createUseStyles } from 'react-jss';
+import Photo from '../component/Photo';
 
 const useStyles = createUseStyles({
-    galleryContainer: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        gap: '1rem'
+    gallery: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: '10px',
+        '@media (max-width: 1240px)': {
+          gridTemplateColumns: 'repeat(2, 1fr)',
+        },
+        '@media (max-width: 830px)': {
+          gridTemplateColumns: '1fr',
+        },
       },
-      galleryPhoto: {
-        width: '33%', /* Adjust this to your desired photo width */
-        // height: '200px', /* Adjust this to your desired photo height */
-        objectFit: 'cover', /* Maintain aspect ratio and crop if necessary */
-        // marginBottom: '10px', /* Add some space between photos */
-        borderRadius: '4px',
-        '&:hover': {
-            cursor: 'pointer',
-            boxShadow: '2px 2px 2px 1px rgba(0, 0, 0, 0.2)'
-        }
-      }
+  imageContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  image: {
+    width: '100%',
+    height: 'auto',
+    display: 'block',
+  },
 });
 
-const PhotoGallery = ({ photos }) => {
-    const classes = useStyles();
-    return (
-        <div className={classes.galleryContainer} >
-            {photos.map((photo, index) => (
-                <img
-                key={index}
-                className={classes.galleryPhoto}
-                src={photo.src}
-                alt={photo.title}
-                />
-            ))}
-        </div>
-    );
+function PhotoGallery({ images }) {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.gallery}>
+        {images.map((img, index) => (
+            <div key={index} className={classes.imageContainer}>
+                <Photo image={img.src} altText={img.alt || 'Gallery Image'} />
+            </div>
+        ))}
+    </div>
+  );
 }
 
 export default PhotoGallery;
