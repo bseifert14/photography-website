@@ -25,13 +25,13 @@ const useStyles = createUseStyles({
   },
 });
 
-function PhotoGallery({ images }) {
+function PhotoGallery({ images, onClick }) {
   const classes = useStyles();
 
   return (
     <div className={classes.gallery}>
         {images.map((img, index) => (
-            <div key={index} className={classes.imageContainer}>
+            <div key={index} className={classes.imageContainer}  onClick={() => onClick(img)} >
                 <Photo image={img.src} altText={img.alt || 'Gallery Image'} />
             </div>
         ))}

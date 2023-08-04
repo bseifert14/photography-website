@@ -12,11 +12,11 @@ import {
 //     { src: BadlandsBighorn, alt: 'Description 2', orientation: 'horizontal' },
 // ];
 const colorPhotoGallery = [
-    { src: BadlandsNightHikeThumbnail, alt: 'Bighorn sheep at Badlands National Park sunset'},
-    { src: BadlandsNightHikeThumbnail, alt: 'Description 2'},
-    { src: BadlandsNightHikeThumbnail, alt: 'Description 2'},
-    { src: BadlandsNightHikeThumbnail, alt: 'Description 2'},
-    { src: BadlandsNightHikeThumbnail, alt: 'Description 2'},
+    { src: BadlandsNightHikeThumbnail, alt: 'Description 1', name: 'BadlandsNightHikeThumbnail'},
+    { src: BadlandsNightHikeThumbnail, alt: 'Description 3', name: 'BadlandsNightHikeThumbnail'},
+    { src: BadlandsNightHikeThumbnail, alt: 'Description 4', name: 'BadlandsNightHikeThumbnail'},
+    { src: BadlandsNightHikeThumbnail, alt: 'Description 5', name: 'BadlandsNightHikeThumbnail'},
+    { src: BadlandsNightHikeThumbnail, alt: 'Description 6', name: 'BadlandsNightHikeThumbnail'},
 ];
 
 export default colorPhotoGallery;
