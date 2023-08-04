@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import colorPhotoGallery from '../data/color-photo-gallery';
+import { colorPhotoGalleryThumbnails } from '../data/color-photo-gallery';
 import { createUseStyles } from 'react-jss';
 import PhotoGallery from '../common/layout/PhotoGallery';
 import Panorama from "../common/layout/Panorama";
 import { SunapeeGoldenSunset } from '../common/PhotoIndex';
 import Modal from '../common/component/Modal';
-import { setPhoto } from '../store/gallery/photoSlice';
+import { clearSelected, setPhoto } from '../store/gallery/photoSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = createUseStyles({
@@ -23,21 +23,29 @@ function Color() {
 
     const handleClick = (img) => {
         setShowModal(!showModal);
-        dispatch(setPhoto(img))
+        dispatch(setPhoto(img));
     }
 
+    const handleClose = () => {
+        setShowModal(!showModal)
+        dispatch(clearSelected());
+    }
+    console.log('selected', selected);
     return (
         <>
             <div className={classes.container}>
                 <Panorama image={SunapeeGoldenSunset} altText="New Hapshire Lake Sunapee sunset over mountains" />
-                <PhotoGallery images={colorPhotoGallery} onClick={handleClick} />
+                <PhotoGallery images={colorPhotoGalleryThumbnails} onClick={handleClick} />
             </div>
             <Modal
                 data={selected}
                 open={showModal}
-                onClose={() => setShowModal(!showModal)}
+                onClose={handleClose}
                 size="xlg"
-            />
+            >
+                <div>Ben</div>
+                {/* <Photo image={img.src} altText={img.alt || 'Gallery Image'} /> */}
+            </Modal>
         </>
     );
 }

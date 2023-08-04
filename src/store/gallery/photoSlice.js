@@ -8,10 +8,14 @@ export const photoSlice = createSlice({
     reducers: {
         setPhoto: (state, action) => {
             state.selected = action.payload
+        },
+        
+        clearSelected: (state) => {
+            state.selected = null
         }
     },
 })
 
-export const { setPhoto } = photoSlice.actions
+export const { setPhoto, clearSelected } = photoSlice.actions
 
 export default photoSlice.reducer

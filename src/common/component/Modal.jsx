@@ -26,7 +26,7 @@ const useStyles = createUseStyles({
     }
 })
 
-const Modal = ({ open, onClose, data, size = 'sm' }) => {
+const Modal = ({ open, onClose, data, size = 'sm', children }) => {
     const classes = useStyles();
 
     const modalStyle = classNames(classes.modal, {
@@ -46,7 +46,7 @@ const Modal = ({ open, onClose, data, size = 'sm' }) => {
         >
             <Box>
                 <div className={modalStyle}>
-                    Ben
+                    {children}
                 </div>
             </Box>
             

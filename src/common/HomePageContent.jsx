@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
-import { CBBarn, HorseShoe } from '../common/PhotoIndex';
+import { CBBarn, HorseshoeBend } from '../common/PhotoIndex';
 
 
 const useStyles = createUseStyles({
@@ -59,7 +59,7 @@ export default function HomePageContent() {
                         <Link to={`color`} className={classes.shopLink}>
                             <div className={classes.optionText}>Shop Color</div>
                             <img 
-                                src={HorseShoe}
+                                src={HorseshoeBend}
                                 alt="Horseshoe National Park"
                                 className={classes.shopImage}
                             />

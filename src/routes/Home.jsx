@@ -1,6 +1,6 @@
 import { createUseStyles } from "react-jss";
 import HomePageContent from "../common/HomePageContent";
-import HorseShoe from '../assets/HorseShoe.jpg';
+import { HorseshoeBend } from '../common/PhotoIndex';
 
 const useStyles = createUseStyles({
     mainImage: {
@@ -14,7 +14,7 @@ export default function Home() {
     return (
         <>              
             <img 
-                src={HorseShoe}
+                src={HorseshoeBend}
                 alt="Horseshoe National Park"
                 className={classes.mainImage}
             />
