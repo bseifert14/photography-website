@@ -10,7 +10,8 @@ const useStyles = createUseStyles({
         transform: 'translate(-50%, -50%)',
         backgroundColor: 'white',
         boxShadow: 24,
-        p: 4
+        p: 4,
+        // maxHeight: '800px'
     }, 
     sm: {
         minWidth: '30%'

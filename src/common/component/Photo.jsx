@@ -3,7 +3,6 @@ import { createUseStyles } from "react-jss";
 const useStyles = createUseStyles({
     image: {
         maxWidth: '100%',
-        // maxHeight: '655px',
         height: 'auto',
         borderRadius: '4px',
         '&:hover': {
@@ -13,14 +12,14 @@ const useStyles = createUseStyles({
     }
 });
 
-export default function Photo({ altText, image }) {
+export default function Photo({ altText, image, customClass }) {
     const classes = useStyles();
 
     return (
         <img 
             src={image}
             alt={altText}
-            className={classes.image}
+            className={customClass || classes.image}
         />
     );
 }
