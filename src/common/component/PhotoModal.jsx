@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from '@mui/material';
 import { createUseStyles } from 'react-jss';
+import classNames from 'classnames';
 
 const useStyles = createUseStyles({
     modal: {
@@ -40,17 +41,23 @@ const useStyles = createUseStyles({
     },
     textArea: {
         position: 'absolute',
+        width: '100%',
         bottom: '0',
         right: '0',
-        height: '150px', // Leave some space for the button
+        height: '0',
+        maxHeight: '0',
         backgroundColor: 'rgba(255,255,255,0.6)',
-        transition: 'width 0.3s', // Transition for smooth opening
+        // transition: 'width 10s', // Transition for smooth opening
         padding: '10px',
-        overflow: 'hidden' // Hide the text content when width is 0
+        overflow: 'hidden', // Hide the text content when width is 0
+        transition: 'max-height 5s ease, transform 5s ease', // Smooth transition for maxHeight and transform
+        transformOrigin: 'top', // Set the transform origin to the top
     },
     showText: {
-        width: '80%' // Expand the width to reveal the text area
-    }
+        height: '150px', // Expand the height to reveal the text area
+        maxHeight: '150px', // Expand the height to reveal the text area
+        transform: 'scaleY(1)', // Scale the Y-axis to show the text content
+      },
 });
 
 const PhotoModal = ({ open, onClose, imageUrl }) => {
@@ -81,7 +88,8 @@ const PhotoModal = ({ open, onClose, imageUrl }) => {
                 </button>
             )}
             { showText && (
-                <div className={classes.textArea}>
+                // <div className={classes.textArea}>
+                <div className={classNames(classes.textArea, { [classes.showText]: showText })}>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula mi in turpis varius aliquet. Nulla
                         facilisi.
