@@ -94,7 +94,7 @@ const PhotoModalStore = () => {
                 </section>
             </div>
             <div className={classes.gridItem}>
-                Seifert
+                Actions
             </div>
         </div>
     );
