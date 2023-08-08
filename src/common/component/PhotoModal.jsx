@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from '@mui/material';
 import { createUseStyles } from 'react-jss';
 import classNames from 'classnames';
+import PhotoModalStore from './PhotoModalStore';
 
 const useStyles = createUseStyles({
     modal: {
@@ -40,17 +41,18 @@ const useStyles = createUseStyles({
             backgroundColor: '#C0C0C0'
         }
     },
-    textArea: {
+    miniStoreContainer: {
         position: 'absolute',
         right: '0',
         bottom: '0',
         width: '100%',
-        backgroundColor: 'rgba(255,255,255,0.6)',
+        // backgroundColor: 'rgba(255,255,255,0.9)',
+        backgroundColor: 'white',
         height: '0',
         overflow: 'hidden',
         transition: 'height 0.4s ease'
     },
-    showText: {
+    showContainer: {
         height: '25%',
     }
 });
@@ -59,8 +61,8 @@ const PhotoModal = ({ open, onClose, imageUrl }) => {
   const classes = useStyles();
   const [showText, setShowText] = useState(false);
 
-  const textAreaStyle = classNames(classes.textArea, {
-    [classes.showText]: showText
+  const textAreaStyle = classNames(classes.miniStoreContainer, {
+    [classes.showContainer]: showText
   });
 
   const handleToggleText = () => {
@@ -77,6 +79,7 @@ const PhotoModal = ({ open, onClose, imageUrl }) => {
     >
         <div className={classes.modalContent}>
             <img src={imageUrl} alt="Photo" className={classes.image} />
+
             { !showText && (
                 <button className={classes.button} onClick={handleToggleText}>
                     Buy Photo
@@ -84,10 +87,7 @@ const PhotoModal = ({ open, onClose, imageUrl }) => {
             )}
 
             <div className={textAreaStyle}>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula mi in turpis varius aliquet. Nulla
-                    facilisi.
-                </p>
+                <PhotoModalStore />
             </div>
         </div>
     </Modal>
