@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal } from '@mui/material';
 import { createUseStyles } from 'react-jss';
 import classNames from 'classnames';
@@ -12,7 +12,8 @@ const useStyles = createUseStyles({
     modalContent: {
         position: 'relative',
         maxWidth: '80%',
-        maxHeight: '90vh'
+        maxHeight: '90vh',
+        overflow: 'hidden'
     },
     image: {
         width: '100%',
@@ -41,33 +42,26 @@ const useStyles = createUseStyles({
     },
     textArea: {
         position: 'absolute',
-        width: '100%',
-        bottom: '0',
         right: '0',
-        height: '0',
-        maxHeight: '0',
+        bottom: '0',
+        width: '100%',
         backgroundColor: 'rgba(255,255,255,0.6)',
-        // transition: 'width 10s', // Transition for smooth opening
-        padding: '10px',
-        overflow: 'hidden', // Hide the text content when width is 0
-        transition: 'max-height 5s ease, transform 5s ease', // Smooth transition for maxHeight and transform
-        transformOrigin: 'top', // Set the transform origin to the top
+        height: '0',
+        overflow: 'hidden',
+        transition: 'height 0.4s ease'
     },
     showText: {
-        height: '150px', // Expand the height to reveal the text area
-        maxHeight: '150px', // Expand the height to reveal the text area
-        transform: 'scaleY(1)', // Scale the Y-axis to show the text content
-      },
+        height: '25%',
+    }
 });
 
 const PhotoModal = ({ open, onClose, imageUrl }) => {
   const classes = useStyles();
   const [showText, setShowText] = useState(false);
 
-  // Reset the showText state when the modal opens or closes
-  useEffect(() => {
-    setShowText(false);
-  }, [open]);
+  const textAreaStyle = classNames(classes.textArea, {
+    [classes.showText]: showText
+  });
 
   const handleToggleText = () => {
     setShowText(!showText);
@@ -78,7 +72,8 @@ const PhotoModal = ({ open, onClose, imageUrl }) => {
         open={open}
         onClose={onClose}
         className={classes.modal}
-        BackdropProps={{ style: { backgroundColor: 'rgba(0, 0, 0, 0.8)' } }}
+        disableAutoFocus={true}
+        BackdropProps={{ style: { backgroundColor: 'rgba(0, 0, 0, 0.7)' } }}
     >
         <div className={classes.modalContent}>
             <img src={imageUrl} alt="Photo" className={classes.image} />
@@ -87,15 +82,13 @@ const PhotoModal = ({ open, onClose, imageUrl }) => {
                     Buy Photo
                 </button>
             )}
-            { showText && (
-                // <div className={classes.textArea}>
-                <div className={classNames(classes.textArea, { [classes.showText]: showText })}>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula mi in turpis varius aliquet. Nulla
-                        facilisi.
-                    </p>
-                </div>
-            )}
+
+            <div className={textAreaStyle}>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula mi in turpis varius aliquet. Nulla
+                    facilisi.
+                </p>
+            </div>
         </div>
     </Modal>
     );
